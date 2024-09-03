@@ -1,0 +1,55 @@
+<style>
+    #image-container {
+        width: 100% !important;
+        max-width: 400px !important; /* Adjust this to zoom in more */
+        height: 150px !important; /* Adjust this to zoom in more */
+        margin: auto !important;
+        text-align: center !important;
+        position: relative !important;
+        z-index: 999 !important;
+        overflow: hidden !important; /* Ensure no overflow */
+    }
+
+    #image-container img {
+        width: calc(400px * 7) !important; /* Total width of the sprite (7 images at 400px each) */
+        height: 100% !important; /* Match the container's height */
+        cursor: pointer !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        transition: transform 0.5s ease-in-out !important;
+    }
+</style>
+
+<div id="image-container">
+    <img src="https://cdn.imgchest.com/files/pyq9cxojba4.webp" alt="Sprite Image" />
+</div>
+
+<script>
+    const imageContainer = document.querySelector('#image-container img');
+    const imageLinks = [
+        "https://s.lazada.com.ph/s.Ph8Bz?cc",  // Spider gun
+        "https://s.lazada.com.ph/s.PhjaL?cc",  // Minecraft Happy birthday
+        "https://s.lazada.com.ph/s.Phkvi?cc",  // Minecraft Lego
+        "https://s.lazada.com.ph/s.Ph8DP?cc",  // Catapult aircraft gun
+        "https://s.lazada.com.ph/s.Ph8Hw?cc",  // Cashier toy
+        "https://s.lazada.com.ph/s.Phj1S?cc",  // Minecraft Keychain
+        "https://www.youtube.com/@Pidcheas"    // Youtube Channel
+    ];
+    const spriteWidth = 400; // Width of each individual sprite (in pixels)
+    let currentIndex = 0;
+
+    function rotateImage() {
+        currentIndex = (currentIndex + 1) % imageLinks.length;
+        imageContainer.style.transform = `translateX(-${currentIndex * spriteWidth}px)`;
+    }
+
+    imageContainer.addEventListener('click', () => {
+        window.location.href = imageLinks[currentIndex];
+    });
+
+    // Start with the first image shown correctly
+    imageContainer.style.transform = `translateX(0px)`;
+
+    setInterval(rotateImage, 5000); // Change image every 5 seconds
+</script>
